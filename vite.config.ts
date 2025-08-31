@@ -6,7 +6,6 @@ export default defineConfig({
   plugins: [
     vue(),
     VitePWA({
-      devOptions: {enabled: true},
       registerType: "autoUpdate",
       manifest: {
         name: "Scheduler App",
