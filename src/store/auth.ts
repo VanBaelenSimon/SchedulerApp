@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import type { DiscordUser, AuthResponse } from "../types/auth";
+const url = import.meta.env.BACKEND_URL || 'http://localhost:3000';
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
@@ -11,7 +12,7 @@ export const useAuthStore = defineStore('auth', {
     actions: {
         async fetchMe(): Promise<void> {
             try {
-                const res = await fetch('http://localhost:3000/auth/me', {
+                const res = await fetch(`${url}/auth/me`, {
                     method: "GET",
                     credentials: "include",
                 })
@@ -28,7 +29,7 @@ export const useAuthStore = defineStore('auth', {
         },
 
         async logout(): Promise<void> {
-            await fetch('http://localhost:3000/auth/logout', {
+            await fetch(`${url}/auth/logout`, {
                 method: 'POST',
                 credentials: "include",
             })

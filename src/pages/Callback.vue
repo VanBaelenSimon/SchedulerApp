@@ -24,6 +24,7 @@
 import { ref, onMounted } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import type { DiscordUser } from "../types/auth";
+const url = import.meta.env.BACKEND_URL || 'http://localhost:3000';
 
 interface DiscordGuild {
   id: string;
@@ -52,7 +53,7 @@ const getGuildIcon = (guild: DiscordGuild) => {
 const confirmGuild = async () => {
   if (!selectedGuild.value || !user.value) return;
 
-  await fetch("http://localhost:3000/auth/discord/finalize", {
+  await fetch(`${url}/auth/discord/finalize`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
@@ -72,7 +73,7 @@ onMounted(async () => {
 
   try {
     const res = await fetch(
-      `http://localhost:3000/auth/discord/callback?code=${code}`,
+      `${url}/auth/discord/callback?code=${code}`,
       { credentials: "include" }
     );
     const data = await res.json();

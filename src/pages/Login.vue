@@ -6,7 +6,8 @@
 </template>
 
 <script setup lang="ts">
+const url = import.meta.env.BACKEND_URL || 'http://localhost:3000';
 function login(): void {
-  window.location.href = 'http://localhost:3000/auth/discord'
+  window.location.href = `${url}/auth/discord`
 }
 </script>
