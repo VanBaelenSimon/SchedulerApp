@@ -21,7 +21,7 @@ router.beforeEach(async (to: RouteLocationNormalized) => {
   const auth = useAuthStore();
 
   if (to.path === "/callback") return;
-  if ((!to.meta.public) && !auth.isAuthenticated) {
+  if (!to.meta.public && !auth.isAuthenticated) {
     await auth.fetchMe();
     if (!auth.isAuthenticated) return "/login";
   }

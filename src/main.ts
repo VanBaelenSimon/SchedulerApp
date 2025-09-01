@@ -5,6 +5,7 @@ import { registerSW } from "virtual:pwa-register";
 import router from './router';
 import {createPinia} from 'pinia'
 
+
 const app = createApp(App);
 app.use(createPinia());
 app.use(router);
