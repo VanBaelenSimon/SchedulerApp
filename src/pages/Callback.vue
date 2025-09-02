@@ -21,10 +21,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import { useRouter, useRoute } from "vue-router";
-import type { DiscordUser } from "../types/auth";
-const url = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+import { ref, onMounted } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import type { DiscordUser } from '../types/auth';
+const url = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 
 interface DiscordGuild {
   id: string;
@@ -47,16 +47,16 @@ const selectGuild = (guild: DiscordGuild) => {
 const getGuildIcon = (guild: DiscordGuild) => {
   return guild.icon
     ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`
-    : "";
+    : '';
 };
 
 const confirmGuild = async () => {
   if (!selectedGuild.value || !user.value) return;
 
   await fetch(`${url}/auth/discord/finalize`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include",
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
     body: JSON.stringify({
       guildId: selectedGuild.value.id,
       guildName: selectedGuild.value.name,
@@ -64,23 +64,23 @@ const confirmGuild = async () => {
     }),
   });
 
-  router.push("/");
+  router.push('/');
 };
 
 onMounted(async () => {
   const code = route.query.code as string | undefined;
-  if (!code) return router.push("/login");
+  if (!code) return router.push('/login');
 
   try {
     const res = await fetch(`${url}/auth/discord/callback?code=${code}`, {
-      credentials: "include",
+      credentials: 'include',
     });
     const data = await res.json();
     user.value = data.user;
     guilds.value = data.guilds;
   } catch (error) {
     console.error(error);
-    router.push("/login");
+    router.push('/login');
   } finally {
     loading.value = false;
   }
