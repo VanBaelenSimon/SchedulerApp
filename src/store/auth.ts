@@ -1,5 +1,8 @@
 import { defineStore } from "pinia";
 import type { DiscordUser, AuthResponse } from "../types/auth";
+
+import router from '../router';
+
 const url = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 
 export const useAuthStore = defineStore("auth", {
@@ -34,6 +37,7 @@ export const useAuthStore = defineStore("auth", {
         credentials: "include",
       });
       this.user = null;
+      router.push('/login')
     },
   },
 });
