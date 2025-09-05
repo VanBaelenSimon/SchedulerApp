@@ -1,5 +1,5 @@
 <template>
-  <div class="callback-page">
+  <div class="container">
     <h2>Pick a guild</h2>
 
     <div v-if="loading">Loading...</div>
@@ -86,30 +86,66 @@ onMounted(async () => {
   }
 });
 </script>
-<style scoped>
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  padding: 10px;
-  cursor: pointer;
+<style scoped lang="scss">
+.container {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid #ccc;
-  margin-bottom: 5px;
-  border-radius: 8px;
+  width: 100%;
+  flex-direction: column;
+  place-items: center;
+  ul {
+    width: 80%;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    li {
+      padding: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 5px;
+      border-radius: 8px;
+      &.selected {
+        background-color: #42b88322;
+        border-color: #42b883;
+      }
+    }
+  }
+  button {
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
 }
-
-li.selected {
-  background-color: #42b88322;
-  border-color: #42b883;
+@media screen and (min-width: 775px) {
+.container{
+  ul{
+    display: grid;
+    grid-template-columns: auto auto;
+    row-gap: 0.25rem
+  }
 }
-
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+}
+@media screen and (min-width: 1025px) {
+.container{
+  ul{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    row-gap: 0.25rem
+  }
+}
+}
+@media screen and (min-width: 1350px) {
+.container{
+  ul{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    row-gap: 0.25rem
+  }
+}
 }
 </style>

@@ -31,7 +31,6 @@ const router = createRouter({
 
 router.beforeEach(async (to: RouteLocationNormalized) => {
   const auth = useAuthStore();
-
   if (to.path === '/callback') return;
   if (!to.meta.public && !auth.isAuthenticated) {
     await auth.fetchMe();

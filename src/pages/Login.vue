@@ -1,5 +1,5 @@
 <template>
-  <div class="login-page">
+  <div class="container">
     <h1>Login</h1>
     <button @click="login" class="button">
       <svg
@@ -25,16 +25,26 @@ function login(): void {
 }
 </script>
 <style scoped lang="scss">
-.button {
-  background-color: #7289da;
+#app {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: .5rem;
-  gap: .5rem;
-  .icon {
-    width: 32px;
+  place-items: center;
+  .container {
+    height: 100dvh;
+    display: flex;
+    place-items: center;
+    flex-direction: column;
+    .button {
+      background-color: #7289da;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem;
+      gap: 0.5rem;
+      .icon {
+        width: 32px;
+      }
+    }
   }
 }
 </style>

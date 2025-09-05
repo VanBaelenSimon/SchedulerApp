@@ -10,3 +10,6 @@
 import { useAuthStore } from '../store/auth';
 const auth = useAuthStore();
 </script>
+<style scoped lang="scss">
+
+</style>
