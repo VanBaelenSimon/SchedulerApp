@@ -1,9 +1,7 @@
 <template>
   <div class="container">
-    <main>
-      <router-view />
-    </main>
-    <Navigation/>
+    <router-view />
+    <Navigation />
   </div>
 </template>
 
@@ -12,12 +10,9 @@ import Navigation from '../components/Navigation.vue';
 </script>
 
 <style scoped lang="scss">
-  .container{
-    height: 100%;
-    main {
-      height: 100%;
-    }
-    display: flex;
-    flex-direction: column;
-  }
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 </style>

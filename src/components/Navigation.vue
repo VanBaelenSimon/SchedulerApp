@@ -6,18 +6,18 @@ import { RouterLink } from 'vue-router';
   <nav class="navigation">
     <ul class="navigation-links">
       <li class="link">
-        <RouterLink to="/" active-class="active">
-          <HomeFilled class="icon" style="color: white; fill: aqua" />
+        <RouterLink to="/home" active-class="active">
+          <HomeFilled class="icon" />
         </RouterLink>
       </li>
       <li class="link">
         <RouterLink to="/schedule" active-class="active">
-          <Calendar class="icon" style="color: white" />
+          <Calendar class="icon" />
         </RouterLink>
       </li>
       <li class="link">
         <RouterLink to="/profile" active-class="active">
-          <UserFilled class="icon" style="color: white" />
+          <UserFilled class="icon" />
         </RouterLink>
       </li>
     </ul>
@@ -26,17 +26,15 @@ import { RouterLink } from 'vue-router';
 
 <style scoped lang="scss">
 nav {
-  background-color: #141414;
+  background-color: #242424;
   ul {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     list-style: none;
-    text-decoration: none;
     padding: 0;
     li {
       text-decoration: none;
-      // padding: 0.25rem;
       a {
         width: 100%;
         height: 100%;
@@ -45,33 +43,12 @@ nav {
         align-items: center;
         .icon {
           width: 32px;
+          color: white;
+        }
+        &.active .icon {
+          color: #ffd700;
         }
       }
-    }
-  }
-}
-@media screen and (min-width: 520px) {
-  nav {
-    ul {
-      li {
-        a {
-          .icon {
-            width: 40px;
-          }
-        }
-      }
-    }
-  }
-}
-@media screen and (min-width: 1025px) {
-  nav {
-    .icon {
-    }
-  }
-}
-@media screen and (min-width: 1350px) {
-  nav {
-    .icon {
     }
   }
 }

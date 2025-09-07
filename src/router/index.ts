@@ -17,7 +17,7 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     component: MobileLayout,
     children: [
-      { path: '', component: Home },
+      { path: 'home', component: Home },
       { path: 'schedule', component: Schedule },
       { path: 'profile', component: Profile },
     ],
