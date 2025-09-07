@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>
+  <div class="pages">
     <h1>Schedule</h1>
     <p>Calendar goes here.</p>
   </div>

@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>
+  <div class="pages">
     <h1>Profile page</h1>
     <p>User profile info goes here.</p>
   </div>
