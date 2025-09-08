@@ -41,7 +41,6 @@
         </li>
       </ul>
     </section>
-    <button @click="auth.logout">Logout</button>
   </div>
 </template>
 
