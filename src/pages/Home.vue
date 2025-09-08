@@ -3,7 +3,7 @@
     <section class="availability">
       <div class="availability-header">
         <h2>{{ auth.user.username }}'s availabilities:</h2>
-        <button @click="addAvailability">Add</button>
+        <button @click="showAddForm = true">Add</button>
       </div>
 
       <div v-if="selectedItems.length > 0" class="bulk-action">
@@ -41,6 +41,15 @@
         </li>
       </ul>
     </section>
+
+    <AddAvailabilityForm
+      v-if="showAddForm && auth.user?.guildId && auth.user?.id"
+      :open="showAddForm"
+      :guild-id="auth.user.guildId"
+      :user-id="auth.user.id"
+      @close="showAddForm = false"
+      @saved="fetchAvailability"
+    />
   </div>
 </template>
 
@@ -48,10 +57,12 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useAuthStore } from '../store/auth';
 import type { Availability } from '../types/auth';
+import AddAvailabilityForm from '../components/AddAvailabilityForm.vue';
 const url = import.meta.env.VITE_BACKEND_URL;
 
 const availability = ref<Availability[]>([]);
 const selectedItems = ref<string[]>([]);
+const showAddForm = ref(false);
 
 const fetchAvailability = async () => {
   const guildId = auth.user?.guildId;
@@ -82,7 +93,7 @@ let interval: number | null = null;
 
 onMounted(() => {
   fetchAvailability();
-  interval = window.setInterval(fetchAvailability, 100000);
+  interval = window.setInterval(fetchAvailability, 1000000);
 });
 
 onUnmounted(() => {
