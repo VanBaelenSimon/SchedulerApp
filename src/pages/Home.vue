@@ -93,7 +93,7 @@ let interval: number | null = null;
 
 onMounted(() => {
   fetchAvailability();
-  interval = window.setInterval(fetchAvailability, 1000000);
+  interval = window.setInterval(fetchAvailability, 10000);
 });
 
 onUnmounted(() => {
