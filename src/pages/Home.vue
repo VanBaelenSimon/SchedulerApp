@@ -100,8 +100,6 @@ onUnmounted(() => {
   if (interval) clearInterval(interval);
 });
 
-const addAvailability = async () => {};
-
 const handleItemClick = (item: Availability) => {
   if (selectedItems.value.length > 0) {
     toggleSelection(item.shortId);
@@ -123,12 +121,34 @@ const clearSelection = () => {
 };
 
 const removeSelected = async () => {
-  for (let i = 0; i < selectedItems.value.length; i++) {
-    console.log(selectedItems.value[i]);
+  if (!auth.user?.guildId || !auth.user?.id) return;
 
-    // const res = await fetch(`${url}/availability/${auth.user?.guildId}/${auth.user?.id}/${selectedItems.value[i]}`)
+  const items = [
+    {
+      userId: auth.user.id,
+      shortIds: Array.from(selectedItems.value),
+    },
+  ];
+
+  try {
+    const res = await fetch(`${url}/availability/batchdelete`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        guildId: auth.user.guildId,
+        items,
+      }),
+    });
+
+    const data = await res.json();
+    if (!data.success) throw new Error(data.error || 'Failed to delete');
+
+    clearSelection();
+    await fetchAvailability();
+  } catch (error) {
+    console.error(error);
+    alert('Failed to delete selected availabilities.');
   }
-  clearSelection();
 };
 
 const formatDate = (isoString: string) => {
