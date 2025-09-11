@@ -5,6 +5,7 @@ import { registerSW } from "virtual:pwa-register";
 import router from './router';
 import {createPinia} from 'pinia'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import 'vue-cal/dist/vuecal.css';
 
 
 const app = createApp(App);
