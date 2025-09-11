@@ -159,9 +159,9 @@ const formatDate = (isoString: string) => {
 };
 const formatTime = (isoString: string) => {
   const date = new Date(isoString);
-  return date.toLocaleString(undefined, {
-    timeStyle: 'short',
-  });
+  const hours = String(date.getUTCHours()).padStart(2, '0');
+  const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+  return `${hours}:${minutes}`;
 };
 
 const auth = useAuthStore();
