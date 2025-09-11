@@ -55,6 +55,42 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.vuecal__menu {
+  display: none !important;
+}
+
+.vuecal__event.team-availability {
+  position: static !important;
+  display: inline-block !important;
+  width: 8px !important;
+  height: 8px !important;
+  margin: 0 2px 0 0 !important;
+  border-radius: 50% !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  text-indent: -9999px !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+.vuecal__event.premier {
+  background-color: #0077ff !important;
+}
+.vuecal__event.match {
+  background-color: #ff0000 !important;
+}
+.vuecal__event.scrim {
+  background-color: #1ec041 !important;
+}
+
+.vuecal__cell--out-of-scope{
+  color: gray!important;
+}
+
+.vuecal__cell--selected {
+    background-color: #242424!important;
+    z-index: -1!important;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
