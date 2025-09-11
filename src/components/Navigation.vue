@@ -6,7 +6,7 @@ import { RouterLink } from 'vue-router';
   <nav class="navigation">
     <ul class="navigation-links">
       <li class="link">
-        <RouterLink to="/home" active-class="active">
+        <RouterLink to="/" exact-active-class="active">
           <HomeFilled class="icon" />
         </RouterLink>
       </li>

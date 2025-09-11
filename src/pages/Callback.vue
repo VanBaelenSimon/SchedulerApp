@@ -64,7 +64,7 @@ const confirmGuild = async () => {
     }),
   });
 
-  router.push('/home');
+  router.push('/');
 };
 
 onMounted(async () => {
