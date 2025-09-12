@@ -39,15 +39,18 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useAuthStore } from '../store/auth';
 const props = defineProps<{ open: boolean; guildId: string; userId: string }>();
 const emit = defineEmits(['close', 'saved']);
+
+const auth = useAuthStore();
 
 const type = ref('premier');
 const date = ref('');
 const startTime = ref('');
 const endTime = ref('');
 
-const url = import.meta.env.VITE_BACKEND_URL;
+const url = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 
 const submit = async () => {
     if (!date.value || !startTime.value || !endTime.value) return;
@@ -61,6 +64,7 @@ const submit = async () => {
         type: type.value,
         startUtc,
         endUtc,
+        userName: auth.user?.username,
     };
 
     try {

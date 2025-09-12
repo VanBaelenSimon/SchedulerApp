@@ -1,22 +1,16 @@
 <template>
   <div class="pages">
     <vue-cal
-      style="height: 80vh"
-      :disable-views="['day','week', 'years', 'year']"
+      style="height: 85dvh"
+      active-view="month"
       :events="events"
+      disableViews="[week, year, years]"
+      click-to-navigate="true"
+      dbclick-to-navigate="false"
       events-on-month-view="short"
-      :time="false"
+      timezone="UTC"
       @cell-click="handleDayClick"
     />
-    <div v-if="selectedDayEvents.length" class="day-details">
-      <h3>{{ selectedDateLabel }}</h3>
-      <ul>
-        <li v-for="e in selectedDayEvents" :key="e.id">
-          <strong>{{ e.title }}</strong>
-          <span>({{ formatTime(e.start) }} - {{ formatTime(e.end) }})</span>
-        </li>
-      </ul>
-    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -25,15 +19,11 @@ import VueCal from 'vue-cal';
 import { useAuthStore } from '../store/auth';
 
 const auth = useAuthStore();
-const url = import.meta.env.VITE_BACKEND_URL;
+const url = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 
 const events = ref<any[]>([]);
 const selectedDayEvents = ref<any[]>([]);
 const selectedDateLabel = ref('');
-
-function formatTime(date: Date) {
-  return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-}
 
 async function fetchTeamAvailabilities() {
   if (!auth.user?.guildId) return;
@@ -43,12 +33,16 @@ async function fetchTeamAvailabilities() {
   const data = await res.json();
   if (!data.success) return;
 
-  events.value = data.results.map((a: any) => ({
-    start: new Date(a.startUtc),
-    end: new Date(a.endUtc),
-    title: `${a.userId} (${a.type})`,
-    class: `team-availability ${a.type.toLowerCase()}`,
-  }));
+  events.value = data.results.map((a: any) => {
+    const startTime = a.startUtc.slice(0, 16).replace('T', ' ');
+    const endTime = a.endUtc.slice(0, 16).replace('T', ' ');
+    return {
+      start: startTime,
+      end: endTime,
+      title: `${a.userName || a.userId}`,
+      class: `team-availability ${a.type.toLowerCase()}`,
+    };
+  });
 }
 
 function handleDayClick({ date, events: dayEvents }: any) {
@@ -58,7 +52,3 @@ function handleDayClick({ date, events: dayEvents }: any) {
 
 onMounted(fetchTeamAvailabilities);
 </script>
-
-<style scoped lang="scss">
-
-</style>

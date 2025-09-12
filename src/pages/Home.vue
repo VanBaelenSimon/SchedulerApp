@@ -58,7 +58,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import { useAuthStore } from '../store/auth';
 import type { Availability } from '../types/auth';
 import AddAvailabilityForm from '../components/AddAvailabilityForm.vue';
-const url = import.meta.env.VITE_BACKEND_URL;
+const url = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 
 const availability = ref<Availability[]>([]);
 const selectedItems = ref<string[]>([]);
