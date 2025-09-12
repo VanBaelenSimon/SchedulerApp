@@ -59,27 +59,32 @@ button:focus-visible {
   position: static !important;
   display: inline-block !important;
   border-radius: 5px !important;
+  width: 95%!important;
   box-shadow: none !important;
   padding: 5px !important;
   font-size: 12px !important;
 }
+.vuecal__cell-content{
+  justify-content: start!important;
+}
 .vuecal__event.premier {
   color: white;
-  background-color: #0077ff !important;
+  background-color: #4199ff !important;
+  border: 2px solid #004ba0 !important;
 }
 .vuecal__event.match {
   color: white;
-  background-color: #ff0000 !important;
+  background-color: #ff6464 !important;
+  border: 2px solid #680000 !important;
 }
 .vuecal__event.scrim {
-  color: white;
-  background-color: #1ec041 !important;
+  color: rgb(110, 110, 110);
+  background-color: #52ff77 !important;
+  border: 2px solid #14862d !important;
 }
-
 .vuecal__cell--out-of-scope {
   color: gray !important;
 }
-
 .vuecal__cell--selected {
     background-color: transparent!important;
 }
