@@ -4,12 +4,11 @@
       style="height: 85dvh"
       active-view="month"
       :events="events"
-      disableViews="[week, year, years]"
-      click-to-navigate="true"
-      dbclick-to-navigate="false"
+      hide-view-selector="true"
+      disableViews="[day,week, year, years]"
+      dbclick-to-navigate="true"
       events-on-month-view="short"
       timezone="UTC"
-      @cell-click="handleDayClick"
     />
   </div>
 </template>
@@ -22,8 +21,6 @@ const auth = useAuthStore();
 const url = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 
 const events = ref<any[]>([]);
-const selectedDayEvents = ref<any[]>([]);
-const selectedDateLabel = ref('');
 
 async function fetchTeamAvailabilities() {
   if (!auth.user?.guildId) return;
@@ -43,11 +40,6 @@ async function fetchTeamAvailabilities() {
       class: `team-availability ${a.type.toLowerCase()}`,
     };
   });
-}
-
-function handleDayClick({ date, events: dayEvents }: any) {
-  selectedDayEvents.value = dayEvents;
-  selectedDateLabel.value = new Date(date).toLocaleDateString();
 }
 
 onMounted(fetchTeamAvailabilities);
