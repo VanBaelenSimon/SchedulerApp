@@ -50,7 +50,7 @@ const date = ref('');
 const startTime = ref('');
 const endTime = ref('');
 
-const url = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+const url = import.meta.env.VITE_BACKEND_URL;
 
 const submit = async () => {
     if (!date.value || !startTime.value || !endTime.value) return;

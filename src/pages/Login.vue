@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-const url = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+const url = import.meta.env.VITE_BACKEND_URL;
 function login(): void {
   window.location.href = `${url}/auth/discord`;
 }
