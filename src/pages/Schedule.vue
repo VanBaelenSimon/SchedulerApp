@@ -27,7 +27,7 @@ import { useAuthStore } from '../store/auth';
 import EventModal from '../components/EventModal.vue';
 
 const auth = useAuthStore();
-const url = import.meta.env.VITE_BACKEND_URL;
+const url = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 
 const events = ref<any[]>([]);
 const modalVisible = ref(false);

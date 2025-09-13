@@ -24,7 +24,7 @@
 import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import type { DiscordUser } from '../types/auth';
-const url = import.meta.env.VITE_BACKEND_URL;
+const url = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 
 interface DiscordGuild {
   id: string;
