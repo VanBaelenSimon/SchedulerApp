@@ -9,12 +9,10 @@ import MobileLayout from '../layouts/MobileLayout.vue';
 import Home from '../pages/Home.vue';
 import Schedule from '../pages/Schedule.vue';
 import Profile from '../pages/Profile.vue';
-import Unallowed from '../pages/Unallowed.vue';
 
 const routes: RouteRecordRaw[] = [
   { path: '/login', component: Login, meta: { public: true } },
   { path: '/callback', component: Callback, meta: { public: true } },
-  { path: '/unallowed', component: Unallowed, meta: { public: true } },
   {
     path: '/',
     component: MobileLayout,
@@ -33,7 +31,7 @@ const router = createRouter({
 
 router.beforeEach(async (to: RouteLocationNormalized) => {
   const auth = useAuthStore();
-  if (to.path === '/callback' || to.path === '/unallowed') return;
+  if (to.path === '/callback') return;
   if (!to.meta.public && !auth.isAuthenticated) {
     await auth.fetchMe();
     if (!auth.isAuthenticated) return '/login';
