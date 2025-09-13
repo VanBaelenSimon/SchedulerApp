@@ -53,7 +53,7 @@ const getGuildIcon = (guild: DiscordGuild) => {
 const confirmGuild = async () => {
   if (!selectedGuild.value || !user.value) return;
 
-  await fetch(`${url}/auth/discord/finalize`, {
+  const res = await fetch(`${url}/auth/discord/finalize`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     credentials: 'include',
@@ -63,7 +63,10 @@ const confirmGuild = async () => {
       user: user.value,
     }),
   });
-
+  const data = await res.json();
+  if (!data.success) {
+    router.push('/unallowed');
+  }
   router.push('/');
 };
 
