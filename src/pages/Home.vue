@@ -69,7 +69,8 @@ const url = import.meta.env.VITE_BACKEND_URL;
 const availability = ref<Availability[]>([]);
 const selectedItems = ref<string[]>([]);
 const showAddForm = ref(false);
-
+const router = useRoutet();
+  
 const fetchAvailability = async () => {
   const guildId = auth.user?.guildId;
   const userId = auth.user?.id;
