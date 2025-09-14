@@ -1,9 +1,4 @@
 <template>
-  <div v-if="!auth.user" class="pages">
-    <button @click="hrefToLogin">
-      Go To Login
-    </button>
-  </div>
   <div v-if="auth.user" class="pages">
     <section class="availability">
       <div class="availability-header">
@@ -62,14 +57,12 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useAuthStore } from '../store/auth';
 import type { Availability } from '../types/auth';
-import { useRouter } from 'vue-router';
 import AddAvailabilityForm from '../components/AddAvailabilityForm.vue';
 const url = import.meta.env.VITE_BACKEND_URL;
 
 const availability = ref<Availability[]>([]);
 const selectedItems = ref<string[]>([]);
 const showAddForm = ref(false);
-const router = useRoutet();
   
 const fetchAvailability = async () => {
   const guildId = auth.user?.guildId;
@@ -95,9 +88,6 @@ const fetchAvailability = async () => {
     ...a,
   }));
 };
-function hrefToLogin(){
-  router.push('/login');
-}
 
 let interval: number | null = null;
 
